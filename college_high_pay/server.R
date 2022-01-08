@@ -15,12 +15,27 @@ shinyServer(function(input, output) {
     output$distPlot <- renderPlot({
 
         # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
+        # dt_degree <- top_n(dt_degree,input$top,Starting_Salary)
+        # dt_degree <- top_n(dt_degree,-input$bottom,Starting_Salary)
+        
+#input$bins
 
         # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white')
+        # browser()
+        
+        ggplot(data = dt_degree,
+               mapping = aes(x = reorder(stringr::str_wrap(Undergraduate_Major,15),Starting_Salary),
+                             y = Starting_Salary))+
+            geom_bar(stat = "identity") + 
+            theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
+    labs(
+            title = "Where it Pays to Attend College",
+            x = "Undergraduate Major",
+            y = "Starting Median Salary"
+        )
 
     })
+    
+    output$distPlot <- renderPlot
 
 })

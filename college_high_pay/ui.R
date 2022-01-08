@@ -7,27 +7,38 @@
 #    http://shiny.rstudio.com/
 #
 
-library(shiny)
+
+source("library.R", keep.source = TRUE)
+source("../app/mod_1.R", keep.source = TRUE)
+source("../app/data.R", keep.source = TRUE)
+
 
 # Define UI for application that draws a histogram
 shinyUI(fluidPage(
+  theme = shinytheme("superhero"),
 
     # Application title
-    titlePanel("Old Faithful Geyser Data"),
+    titlePanel("Where it Pays to Attend College"),
+  h4("Undergraduate Major"),
 
-    # Sidebar with a slider input for number of bins
-    sidebarLayout(
-        sidebarPanel(
-            sliderInput("bins",
-                        "Number of bins:",
-                        min = 1,
-                        max = 50,
-                        value = 30)
-        ),
+    # # Sidebar with a slider input for number of bins
+    #          sidebarPanel(
+    #         sliderInput("top",
+    #                     "Top n:",
+    #                     min = 1,
+    #                     max = 50,
+    #                     value = 30)
+    #     ,
+    #     sliderInput("bottom",
+    #                 "Bottom n:",
+    #                 min = 1,
+    #                 max = 50,
+    #                 value = 30)
+    # ),
 
         # Show a plot of the generated distribution
-        mainPanel(
+
             plotOutput("distPlot")
-        )
+
     )
-))
+)
