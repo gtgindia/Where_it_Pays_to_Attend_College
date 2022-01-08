@@ -13,15 +13,16 @@ library(shiny)
 shinyServer(function(input, output) {
 
     output$distPlot <- renderPlot({
+        #browser()
 
         # generate bins based on input$bins from ui.R
-        # dt_degree <- top_n(dt_degree,input$top,Starting_Salary)
-        # dt_degree <- top_n(dt_degree,-input$bottom,Starting_Salary)
+        dt_degree <- top_n(dt_degree,-(51-input$top[1]),Starting_Salary)
+        dt_degree <- top_n(dt_degree,(-input$top[1]+input$top[2]+1),Starting_Salary)
         
 #input$bins
 
         # draw the histogram with the specified number of bins
-        # browser()
+      
         
         ggplot(data = dt_degree,
                mapping = aes(x = reorder(stringr::str_wrap(Undergraduate_Major,15),Starting_Salary),
@@ -36,6 +37,6 @@ shinyServer(function(input, output) {
 
     })
     
-    output$distPlot <- renderPlot
+    #output$distPlot <- renderPlot
 
 })

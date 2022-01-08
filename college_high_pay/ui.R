@@ -22,19 +22,19 @@ shinyUI(fluidPage(
   h4("Undergraduate Major"),
 
     # # Sidebar with a slider input for number of bins
-    #          sidebarPanel(
-    #         sliderInput("top",
-    #                     "Top n:",
-    #                     min = 1,
-    #                     max = 50,
-    #                     value = 30)
+             sidebarPanel(
+            sliderInput("top",
+                        "Top n:",
+                        min = 1,
+                        max = 50,
+                        value = c(1,20))
     #     ,
     #     sliderInput("bottom",
     #                 "Bottom n:",
     #                 min = 1,
     #                 max = 50,
     #                 value = 30)
-    # ),
+    ),
 
         # Show a plot of the generated distribution
 
