@@ -27,7 +27,7 @@ shinyServer(function(input, output) {
         ggplot(data = dt_degree,
                mapping = aes(x = reorder(stringr::str_wrap(Undergraduate_Major,15),Starting_Salary),
                              y = Starting_Salary))+
-            geom_bar(stat = "identity") + 
+            geom_bar(stat = "identity",fill = "darkgreen") + 
             theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + 
     labs(
             title = "Where it Pays to Attend College",
@@ -37,6 +37,18 @@ shinyServer(function(input, output) {
 
     })
     
-    #output$distPlot <- renderPlot
+    output$distPlot2 <- renderPlot({
+        
+        dt_degree_den <- melt(dt_degree)
+        dt_degree_den <- subset(dt_degree_den,variable=="Starting_Salary" | variable=="MidCareer_Salary")
+        
+        
+        ggplot(data = dt_degree_den,
+               mapping = aes(x = value,
+                             fill = variable))+
+            geom_density(alpha = 0.2, color = NA) +
+            geom_histogram(aes(y = ..density..), alpha = 0.5, position = 'dodge') +
+            scale_fill_manual(values = c('darkgreen', 'purple4'))
+    })
 
 })
